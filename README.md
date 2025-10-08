@@ -11,7 +11,7 @@ Code2Cloud traceability is a GA feature and available now.
 ![Code2Cloud Traceability](docs/code2cloud-traceability.png)
 
 
-#### Code2Cloud Impact Graph (BETA)
+#### Code2Cloud Impact Graph (BETA) 
 The impact graph is a **BETA** feature and requires a feature flag to be enabled.  
 The steps to access it are as follows:
 1. Go to the Investigate tab.
