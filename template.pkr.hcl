@@ -15,6 +15,7 @@ source "amazon-ebs" "my_vm" {
   ami_name      = "my-vm-image-${formatdate("YYYYMMDD-hhmmss", timestamp())}"
 
   #temporary_key_pair_type = "ed25519"
+  vpc_id        = "vpc-0e520e06aabdb1cb0"
 }
 
 build {
