@@ -13,9 +13,9 @@ source "amazon-ebs" "my_vm" {
   instance_type = "t3.micro"
   ssh_username  = "ubuntu"
   ami_name      = "my-vm-image-${formatdate("YYYYMMDD-hhmmss", timestamp())}"
+  vpc_id        = "vpc-0e520e06aabdb1cb0"
 
   #temporary_key_pair_type = "ed25519"
-  vpc_id        = "vpc-0e520e06aabdb1cb0"
 }
 
 build {
