@@ -14,6 +14,7 @@ source "amazon-ebs" "my_vm" {
   ssh_username  = "ubuntu"
   ami_name      = "my-vm-image-${formatdate("YYYYMMDD-hhmmss", timestamp())}"
   vpc_id        = "vpc-0e320e06aabdb1cb0"
+  subnet_id     = "subnet-07167df56df6d3016"
 
   #temporary_key_pair_type = "ed25519"
 }
