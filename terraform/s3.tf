@@ -7,7 +7,9 @@
 # Defines the primary S3 bucket resource for storing CloudTrail logs.
 resource "aws_s3_bucket" "cloudtrail_logs" {
   bucket = var.cloudtrail_logs_bucket_name
-  tags   = { "managed_by" = "paloaltonetworks" }
+  tags = { "managed_by" = "paloaltonetworks"
+    yor_trace = "6df7191d-c4d1-4e05-9690-4784798fd344"
+  }
 }
 
 # Enforces settings to block all public access to the CloudTrail logs bucket.
@@ -84,6 +86,9 @@ resource "aws_s3_bucket_policy" "cloudtrail_logs_policy" {
 # Defines the S3 bucket used for storing CloudFormation templates.
 resource "aws_s3_bucket" "cf_templates" {
   bucket = var.cf_templates_bucket_name
+  tags = {
+    yor_trace = "153adb36-af2f-44fe-ab87-21c23ec927da"
+  }
 }
 
 # Blocks all public access to the CloudFormation templates bucket.
@@ -121,6 +126,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "cf_templates_sse"
 # Defines the S3 bucket for Cortex testing purposes.
 resource "aws_s3_bucket" "c2c_test_cortex" {
   bucket = "c2c-test-cortex"
+  tags = {
+    yor_trace = "a04ae2fb-0741-479b-95d3-cf49fcd906f8"
+  }
 }
 
 # Blocks all public access to the Cortex test bucket.

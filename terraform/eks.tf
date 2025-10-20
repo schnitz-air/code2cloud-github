@@ -26,8 +26,9 @@ resource "aws_eks_cluster" "my_cluster" {
   enabled_cluster_log_types = []
 
   tags = {
-    Name                          = var.cluster_name
+    Name                            = var.cluster_name
     "aws:cloudformation:logical-id" = "EKSCluster"
     "aws:cloudformation:stack-name" = "eks-cluster"
+    yor_trace                       = "4bb1d221-fd9b-452f-a22f-2edc482dc4c7"
   }
 }
