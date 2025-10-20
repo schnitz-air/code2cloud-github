@@ -100,7 +100,7 @@ jobs:
         id: check-deployment
         run: |
           DEPLOYMENT_NAME=${{ vars.DEPLOYMENT_NAME }}
-          DEPLOYMENT_EXISTS=$(kubectl get deployment $DEPLOYMENT_NAME -n default --ignore-not-found)
+          DEPLOYMENT_EXISTS=$(kubectl get deployment $DEPLOYMENT_NAME -n ${{ vars.DEPLOYMENT_NAME }} --ignore-not-found)
           echo "deployment_exists=$([ -z "$DEPLOYMENT_EXISTS" ] && echo "false" || echo "true")" >> $GITHUB_OUTPUT
 
       - name: 🆕 Create New Deployment (if not exists)
@@ -113,6 +113,6 @@ jobs:
         if: steps.check-deployment.outputs.deployment_exists == 'true'
         run: |
           DEPLOYMENT_NAME=${{ vars.DEPLOYMENT_NAME }}
-          CONTAINER_NAME=$(kubectl get deployment $DEPLOYMENT_NAME -n default -o jsonpath='{.spec.template.spec.containers[0].name}')
+          CONTAINER_NAME=$(kubectl get deployment $DEPLOYMENT_NAME -n ${{ vars.DEPLOYMENT_NAME }} -o jsonpath='{.spec.template.spec.containers[0].name}')
           echo "Updating container $CONTAINER_NAME in $DEPLOYMENT_NAME to use image ${{ vars.IMAGE_REGISTRY }}:$LATEST_SHA"
-          kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${{ vars.IMAGE_REGISTRY }}:$LATEST_SHA -n default
+          kubectl set image deployment/$DEPLOYMENT_NAME $CONTAINER_NAME=${{ vars.IMAGE_REGISTRY }}:$LATEST_SHA -n ${{ vars.DEPLOYMENT_NAME }}
