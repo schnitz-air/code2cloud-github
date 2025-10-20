@@ -106,6 +106,7 @@ jobs:
       - name: 🆕 Create New Deployment (if not exists)
         if: steps.check-deployment.outputs.deployment_exists == 'false'
         run: |
+          kubectl create ns ${{ vars.DEPLOYMENT_NAME }}
           kubectl create deployment ${{ vars.DEPLOYMENT_NAME }} \
             --image=${{ vars.IMAGE_REGISTRY }}:$LATEST_SHA -n ${{ vars.DEPLOYMENT_NAME }}
 
