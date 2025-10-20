@@ -107,7 +107,7 @@ jobs:
         if: steps.check-deployment.outputs.deployment_exists == 'false'
         run: |
           kubectl create deployment ${{ vars.DEPLOYMENT_NAME }} \
-            --image=${{ vars.IMAGE_REGISTRY }}:$LATEST_SHA -n default
+            --image=${{ vars.IMAGE_REGISTRY }}:$LATEST_SHA -n ${{ vars.DEPLOYMENT_NAME }}
 
       - name: 🔄 Update Deployment Image (if exists)
         if: steps.check-deployment.outputs.deployment_exists == 'true'
